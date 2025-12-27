@@ -1,0 +1,14 @@
+https://go123.gg/en
+
+https://footballtheme2.apidog.io/get-post-by-category-22864627e0
+
+
+5. dynamic metadata friendly to use in the config <--- tmrw
+
+6 . swipper pre install
+
+10 . detect leaking information
+
+12 . socket
+
+13 redesign <---- this second
