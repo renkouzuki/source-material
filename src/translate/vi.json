@@ -1,0 +1,9 @@
+{
+  "example": {
+    "greeting": "xin chao :D"
+  },
+  "lang": {
+    "vi": "Tiếng Việt",
+    "en": "Tiếng Anh"
+  }
+}

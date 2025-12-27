@@ -1,0 +1,9 @@
+{
+  "example": {
+    "greeting": "hellow :D"
+  },
+  "lang": {
+    "vi": "Vietnamese",
+    "en": "English"
+  }
+}
