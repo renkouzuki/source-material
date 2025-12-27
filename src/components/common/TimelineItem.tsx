@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { TimelineItemType } from "../test/Data";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const TimelineItem = ({ data }: { data: TimelineItemType }) => {
   const {
@@ -21,13 +23,13 @@ const TimelineItem = ({ data }: { data: TimelineItemType }) => {
     >
       <div
         className={`relative flex w-100 max-w-[95%] flex-col rounded-[5px]
-          bg-white px-4 py-2.5 shadow-[0_0_2px_rgba(0,0,0,0.3)]
+          bg-white/90 px-4 py-2.5 shadow-[0_0_2px_rgba(0,0,0,0.3)]
           ${isLeft
             ? "items-end text-right after:right-[-7.5px] after:shadow-[1px_-1px_1px_rgba(0,0,0,0.2)]"
             : "items-start text-left after:left-[-7.5px] after:shadow-[-1px_1px_1px_rgba(0,0,0,0.2)]"
           }
           after:absolute after:top-[calc(50%-7.5px)] after:h-4 after:w-4
-          after:rotate-45 after:bg-white after:content-normal
+          after:rotate-45 after:bg-white/90 after:content-normal
           sm:max-w-[70%] md:p-4`}
       >
         <span
@@ -43,24 +45,26 @@ const TimelineItem = ({ data }: { data: TimelineItemType }) => {
         <p className="my-4 max-w-64 text-sm sm:text-base">{text}</p>
 
         {link && (
-          <a
+          <Link
             href={link.url}
-            className="text-sm text-[rgb(160,160,160)] underline
-              after:ml-0.5 after:hidden after:text-xs after:content-['►']
-              md:no-underline md:after:inline-block"
+            className="text-sm text-[rgb(160,160,160)] flex items-center justify-center gap-1"
             target="_blank"
             rel="noopener noreferrer"
           >
-            {link.text}
-          </a>
+            {isLeft && <ChevronLeft size={18} />}
+            <span>
+              {link.text}
+            </span>
+            {!isLeft && <ChevronRight size={18} />}
+          </Link>
         )}
 
         <span
-          className={`absolute top-[calc(50%-10px)] z-50 h-5 w-5 rounded-full
-            border-[3px] border-slate-400 bg-white
+          className={`absolute top-[calc(50%-5.5px)] z-50 h-3 w-3 rounded-full
+            border-[2px] border-gray-200 bg-white/90
             ${isLeft
-              ? "-right-8 sm:-right-10"
-              : "-left-8 sm:-left-10"
+              ? "-right-7 sm:-right-9"
+              : "-left-7 sm:-left-9"
             }`}
         />
       </div>

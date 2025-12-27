@@ -1,4 +1,4 @@
-import React from "react";
+import ClientTest from "./ClientTest";
 import TestLayout from "./TestLayout";
 import Timeline from "./Timeline";
 
@@ -9,6 +9,7 @@ const Test = ({ data }) => {
         <p>title: test</p>
         {JSON.stringify(data)}
         <Timeline/>
+        <ClientTest/>
       </div>
     </TestLayout>
   );
