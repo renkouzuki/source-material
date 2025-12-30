@@ -37,7 +37,7 @@ const Page = async ({ params }: { params: Promise<{ slug?: string[] }> }) => {
 
   const data = handler.fetch(slugString, type);
 
-  return handler.render(data);
+  return handler.render({data , slug});
 };
 
 export default Page;

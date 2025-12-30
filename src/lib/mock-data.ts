@@ -1,188 +1,73 @@
 export const mockData = {
   //////////////////////////////
-  //////////////////////MENU
+  ////////////////////// MENU
   /////////////////////////////
   menu: (type: string) => {
-    if (type !== "menu")
-      return {
-        status: 200,
-        result: [],
-      };
+    if (type !== "menu") {
+      return { status: 200, result: [] };
+    }
+
     return {
       status: 200,
       result: [
-        {
-          id: 1,
-          url: "/",
-          lang: [
-            {
-              vi: "home",
-            },
-            {
-              en: "home",
-            },
-          ],
-          icon: null,
-        },
+        { id: 1, url: "/", lang: [{ vi: "home" }, { en: "home" }], icon: null },
         {
           id: 2,
-          url: "/service",
-          lang: [
-            {
-              vi: "service",
-            },
-            {
-              en: "service",
-            },
-          ],
-          icon: null,
-        },
-        {
-          id: 3,
-          url: "/pricing",
-          lang: [
-            {
-              vi: "pricing",
-            },
-            {
-              en: "pricing",
-            },
-          ],
-          icon: null,
-        },
-        {
-          id: 4,
-          url: "/contact",
-          lang: [
-            {
-              vi: "contact",
-            },
-            {
-              en: "contact",
-            },
-          ],
+          url: "/documents",
+          lang: [{ vi: "documents" }, { en: "documents" }],
           icon: null,
         },
         {
           id: 5,
           url: "/blogs",
-          lang: [
-            {
-              vi: "blogs",
-            },
-            {
-              en: "blogs",
-            },
-          ],
+          lang: [{ vi: "blogs" }, { en: "blogs" }],
           icon: null,
         },
       ],
-      title: [], //// it does have object too :D
+      title: [],
     };
   },
+
   //////////////////////////////
-  //////////////////////get page type
+  ////////////////////// SLUG TYPE
   /////////////////////////////
-  slugType: (slug) => {
-    switch (slug) {
-      case "service":
-        return {
-          type: "category",
-        };
-      case "pricing":
-        return {
-          type: "page",
-        };
-      case "contact":
-        return {
-          type: "page",
-        };
-      case "blogs":
-        return {
-          type: "page",
-        };
-      case "example":
-        return {
-          type: "post",
-        };
-      case "home":
-        return {
-          type: "page",
-        };
-      default:
-        return {
-          type: null,
-        };
-    }
+  slugType: (slug: string) => {
+    const map: Record<string, string> = {
+      blogs: "page",
+      example: "post",
+      home: "page",
+      documents: "page",
+      anime: "category",
+      digitalillustration: "category",
+      conceptart: "category",
+      photography: "category",
+      uiuxdesign: "category",
+      thirddart: "category",
+    };
+
+    return { type: map[slug] ?? null };
   },
+
   //////////////////////////////
-  //////////////////////get page by slug
+  ////////////////////// PAGE BY SLUG
   /////////////////////////////
-  getPageBySlug: (slug) => {
-    switch (slug) {
-      case "service":
-        return {
-          title: "Hello Welcome to Seo Kit",
-          seo_title: "Seo kit service page",
-          seo_description: "Seo descriptions",
-          post_date: "2025-08-05T08:18:04+07:00",
-          image: null,
-          content: null,
-          type: "service",
-        };
-      case "contact":
-        return {
-          title: "Hello Welcome to Seo Kit",
-          seo_title: "Seo kit contact page",
-          seo_description: "Seo descriptions",
-          post_date: "2025-08-05T08:18:04+07:00",
-          image: null,
-          content: null,
-          type: "contact",
-        };
-      case "blogs":
-        return {
-          title: "Hello Welcome to Seo Kit",
-          seo_title: "Seo kit blogs page",
-          seo_description: "Seo descriptions",
-          post_date: "2025-08-05T08:18:04+07:00",
-          image: null,
-          content: null,
-          type: "default",
-        };
-      case "pricing":
-        return {
-          title: "Hello Welcome to Seo Kit",
-          seo_title: "Seo kit pricing page",
-          seo_description: "Seo descriptions",
-          post_date: "2025-08-05T08:18:04+07:00",
-          image: null,
-          content: null,
-          type: "pricing",
-        };
-      case "home":
-        return {
-          title: "Hello Welcome to Seo Kit",
-          seo_title: "Seo kit home page",
-          seo_description: "Seo descriptions",
-          post_date: "2025-08-05T08:18:04+07:00",
-          image: null,
-          content: null,
-          type: "home",
-          items: [1, 2, 3, 4, 5],
-        };
-    }
+  getPageBySlug: (slug: string) => {
+    return {
+      title: "Hello Welcome to Seo Kit",
+      seo_title: `Seo kit ${slug} page`,
+      seo_description: "Seo descriptions",
+      post_date: "2025-08-05T08:18:04+07:00",
+      image: null,
+      content: null,
+      type: slug,
+      ...(slug === "home" && { items: [1, 2, 3] }),
+    };
   },
+
   //////////////////////////////
-  //////////////////////get post by category
+  ////////////////////// POST BY CATEGORY (normal posts)
   /////////////////////////////
-  getPostByCate: ({
-    type = "category",
-    slug = "",
-    post_type = "post",
-    per_page = 5,
-    paged = 1,
-  }) => {
+  getPostByCate: ({ post_type = "post" }) => {
     if (post_type === "post") {
       return {
         total_post: 15,
@@ -200,15 +85,89 @@ export const mockData = {
       };
     }
   },
+
   //////////////////////////////
-  //////////////////////get post by slug
+  ////////////////////// POST BY SLUG
   /////////////////////////////
-  getPostBySlug: ({ type, slug }) => {
+  getPostBySlug: ({ type, slug }: { type: string; slug: string }) => {
     return {
-      title:
-        "this is just example of page detail that getting by type and slug :D",
+      title: "This is just example page detail 😄",
       type,
       slug,
+    };
+  },
+
+  //////////////////////////////
+  ////////////////////// Blogs (the tricky one)
+  /////////////////////////////
+  getArtPinsByCategory: ({
+    per_page = 10,
+    paged = 1,
+  }: {
+    per_page?: number;
+    paged?: number;
+  }) => {
+    return {
+      total_posts: 20,
+      posts: [
+        {
+          title: "Dreamy Anime Night City",
+          featured_image: "/mock/images/art-anime-night-city.webp",
+          slug: "dreamy-anime-night-city",
+          published_date: "2025-01-01T10:00:00+00:00",
+          vn_date: "01-01-2025",
+          des: "Aesthetic anime-style illustration inspired by cyberpunk night cities.",
+          pin: {
+            author_name: "Mock Artist Alpha",
+            author_avatar: "/mock/avatars/artist-alpha.webp",
+            save_rate: "78",
+            like_rate: "65",
+            comment_rate: "12",
+            created_time: "2025-01-01 18:00:00",
+            category: {
+              name: "Anime Art",
+              cover: "/mock/categories/anime.webp",
+              slug: "anime-art",
+            },
+          },
+        },
+      ],
+      title: null,
+      description: null,
+      seo_title: null,
+      seo_desc: null,
+      category_list: [
+        {
+          name: "Anime",
+          logo: "/uploads/2025/09/category-anime.webp",
+          slug: "anime",
+        },
+        {
+          name: "Digital Illustration",
+          logo: "/uploads/2025/09/category-illustration.webp",
+          slug: "digital-illustration",
+        },
+        {
+          name: "Concept Art",
+          logo: "/uploads/2025/09/category-concept-art.webp",
+          slug: "concept-art",
+        },
+        {
+          name: "Photography",
+          logo: "/uploads/2025/09/category-photography.webp",
+          slug: "photography",
+        },
+        {
+          name: "UI / UX Design",
+          logo: "/uploads/2025/09/category-uiux.webp",
+          slug: "ui-ux-design",
+        },
+        {
+          name: "3D Art",
+          logo: "/uploads/2025/09/category-3d.webp",
+          slug: "thirdd-art",
+        },
+      ],
     };
   },
 };

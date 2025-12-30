@@ -1,7 +1,7 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import Layout from "../layout/Layout";
 
-const HomeLayout = ({ children }: { children: ReactNode }) => {
+const BlogsLayout = ({ children }: { children: ReactNode }) => {
   return (
     <Layout>
       <section className="max-w-7xl mx-auto p-4">{children}</section>
@@ -9,4 +9,4 @@ const HomeLayout = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default HomeLayout;
+export default BlogsLayout;

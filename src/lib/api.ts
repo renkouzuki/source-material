@@ -7,4 +7,5 @@ export const api = {
   getSlugType: cache((slug) => mockData.slugType(slug)),
   getPostByCate: () => mockData.getPostByCate({}),
   getPostBySlug: (slug, type) => mockData.getPostBySlug({ slug, type }),
+  getArtPinsByCategory: () => mockData.getArtPinsByCategory({}),
 };

@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 
@@ -11,20 +10,15 @@ type ModalProps = {
 };
 
 const Modal = ({ isOpen, onClose, children }: ModalProps) => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted || !isOpen) return null;
+  if (!isOpen) return null;
+  if (typeof window === "undefined") return null;
 
   const portalRoot = document.getElementById("portal");
   if (!portalRoot) return null;
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+      className="fixed inset-0 z-90 flex items-center justify-center bg-black/50"
       onClick={onClose}
     >
       <div
@@ -33,7 +27,7 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
       >
         <button
           onClick={onClose}
-          className="absolute cursor-pointer right-3 top-3 rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+          className="absolute right-3 top-3 rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-800"
           aria-label="Close modal"
         >
           <X className="h-5 w-5" />

@@ -1,37 +1,52 @@
 import { api } from "@/lib/api";
-import Contact from "@/components/contact/Contact";
 import Home from "@/components/home/Home";
 import Post from "@/components/post/Post";
-import Pricing from "@/components/pricing/Pricing";
-import Service from "@/components/service/Service";
 import Test from "@/components/test/Test";
+import Documents from "@/components/documents/Documents";
+import Blogs from "@/components/blogs/Blogs/Blogs";
+import BlogCategoryPosts from "@/components/blogs/BlogCategoryPosts/BlogCategoryPosts";
 
 export const pageHandlers = {
   page: {
-    fetch: (slug: string) => api.getPageBySlug(slug),
-    render: (data: any) => {
+    fetch: (slug: string) => {
+      const pageData = api.getPageBySlug(slug);
+      if (pageData.type === "blogs") {
+        return {
+          ...pageData,
+          blogs: api.getArtPinsByCategory(),
+        };
+      }
+      return pageData;
+    },
+    render: ({ data }) => {
       const components = {
-        pricing: Pricing,
-        contact: Contact,
         home: Home,
+        blogs: Blogs,
         default: Post,
+        documents: Documents,
       };
-      const Component = components[data.type];
+      const Component = components[data.type] || components.default;
       return <Component data={data} />;
     },
   },
 
   post: {
+    /////// this for chhecking a detail of wordpress page
     fetch: (slug: string, type: string) => api.getPostBySlug(slug, type),
-    render: (data: any) => {
+    render: ({ data = null }) => {
       return <Test data={data} />;
     },
   },
 
   category: {
-    fetch: () => api.getPostByCate(),
-    render: (data: any) => {
-      return <Service data={data} />;
+    fetch: (slug: string) => {
+      return {
+        slug,
+        ...api.getArtPinsByCategory(),
+      };
+    },
+    render: ({ data }) => {
+      return <BlogCategoryPosts data={data} />;
     },
   },
 };
