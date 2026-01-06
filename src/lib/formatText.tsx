@@ -21,7 +21,17 @@ export const formatText = (text, dummy) => {
         parts.push(
           <a
             key={i}
-            href="#"
+            href={`/profile/${
+              dummy.find(
+                (item) =>
+                  item.name.toLowerCase() ===
+                  words
+                    .slice(i, matched)
+                    .join(" ")
+                    .replace(/^@/, "")
+                    .toLowerCase()
+              ).slug
+            }`}
             className="text-blue-500 underline hover:text-blue-700"
           >
             {words.slice(i, matched).join(" ")}{" "}

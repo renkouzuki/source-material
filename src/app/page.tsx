@@ -4,10 +4,10 @@ import { useState } from "react";
 
 export default function Home() {
   const dummy = [
-    { id: 1, name: "John Doe" },
-    { id: 2, name: "Jane Smith" },
-    { id: 3, name: "Alice Johnson" },
-    { id: 4, name: "Bob Brown" },
+    { id: 1, name: "John Doe", slug: "john-dol" },
+    { id: 2, name: "Jane Smith", slug: "jane-smith" },
+    { id: 3, name: "Alice Johnson", slug: "alice-johnson" },
+    { id: 4, name: "Bob Brown", slug: "bob-brown" },
   ];
 
   const [inputValue, setInputValue] = useState("");
@@ -37,7 +37,7 @@ export default function Home() {
             key={idx}
             className="p-2 border border-gray-200 rounded-md bg-gray-50"
           >
-            {formatText(msg , dummy)}
+            {formatText(msg, dummy)}
           </div>
         ))}
       </div>
