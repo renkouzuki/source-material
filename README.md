@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+# FE Components
+
+Welcome to the FE Components repository! This guide will help you get started with our reusable component library.
+
+## Overview
+
+This repository contains a collection of frontend components designed to accelerate development and maintain consistency across projects.
 
 ## Getting Started
 
-First, run the development server:
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Running the Project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Available Components
 
-## Learn More
+Browse the `src/components` directory to see all available components. Each component includes:
 
-To learn more about Next.js, take a look at the following resources:
+- **Component file** - The main component implementation
+- **Example usage** - Usage examples demonstrating how to use it
+- **Props documentation** - Available props and their types
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Using Components
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Basic Example
 
-## Deploy on Vercel
+```jsx
+import { Button } from './components/Button'
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+export default function App() {
+    return <Button label="Click me" onClick={() => alert('Clicked!')} />
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Component Categories
+
+- **UI Components** - Basic elements like buttons, inputs, cards
+- **Layout Components** - Containers and grid systems
+- **Utility Components** - Helpers and wrappers
+
+## Branches & Examples
+
+Check existing branches for feature branches that contain examples and implementation patterns for each component.
+
+```bash
+git branch -a  # View all branches
+```
+
+## Contributing
+
+When adding new components:
+1. Create a feature branch
+2. Add component with examples
+3. Update this README with usage instructions
+
+## Resources
+
+- Component stories and live examples are available in each component's folder
+- Refer to existing components for code style and patterns
